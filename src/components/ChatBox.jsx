@@ -27,7 +27,7 @@ const ChatBox = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/ask", {
+      const response = await fetch("https://nuru-backend-os39.onrender.com/ask", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: userMessage }),
