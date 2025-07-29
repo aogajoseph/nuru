@@ -5,6 +5,20 @@ import SermonsCard from "../components/SermonsCard";
 
 const sermons = [
   {
+    title: "The Commission",
+    videoUrl: "https://www.youtube.com/embed/idCfP_ScsLc?si=EUAMYqfLOvZSPFvA",
+    description: "If Jesus was to establish a government today, what would it look like? Think about that.",
+    preacher: "Pastor Cosma Gatere",
+    date: "Jul 27, 2025",
+  },
+  {
+    title: "The Connections",
+    videoUrl: "https://www.youtube.com/embed/QApLqL1rx8Q?si=S0Leaxk05g6l8Bfq",
+    description: "The connections of Kingdom citizens and how they impact the world.",
+    preacher: "Pastor Cosma Gatere",
+    date: "Jul 20, 2025",
+  },
+  {
     title: "The Culture",
     videoUrl: "https://www.youtube.com/embed/BrDfdG8mg3c",
     description: "What habits, practices and cultures are you passing on to the next generation?",
@@ -31,20 +45,6 @@ const sermons = [
     description: "Discover the daily Prayer Rhythms that anchor your faith and nourish your spirit.",
     preacher: "Bishop Oscar Muriu",
     date: "Jul 15, 2025",
-  },
-  {
-    title: "The Jesus Model of Prayer",
-    videoUrl: "https://www.youtube.com/embed/OlXn2ZgYkuU",
-    description: "Learn how Jesus prayed and how His model can transform your prayer life.",
-    preacher: "Bishop Oscar Muriu",
-    date: "Jun 8, 2025",
-  },
-  {
-    title: "The Art of Prayer",
-    videoUrl: "https://www.youtube.com/embed/79I0FRbwqTE",
-    description: "How to overcome doubt and trust God in every situation.",
-    preacher: "Rev. John Doe",
-    date: "Jun 1, 2025",
   },
 ];
 

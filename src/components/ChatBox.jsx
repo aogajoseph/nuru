@@ -12,7 +12,6 @@ import {
 
 const ChatBox = () => {
   const [messages, setMessages] = useState([
-    { sender: "bot", text: "How can I assist you today?" },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -58,7 +57,7 @@ const ChatBox = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        height: "50vh",
+        height: "65vh",
         width: { xs: '100%', sm: '70vw', md: '50vw' },
         background: "transparent",
         borderRadius: 3,
