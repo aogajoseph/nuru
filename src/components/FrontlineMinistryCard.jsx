@@ -31,7 +31,7 @@ export default function FrontlineMinistryCard({ title, subheader, image, descrip
   const style = cardStyles[idx % cardStyles.length];
 
   return (
-    <Card sx={{ minWidth: 340, maxWidth: 600, flex: 1, mb: 2, borderRadius: 2, ...style, boxShadow: '0 2px 16px 0 rgba(76, 0, 130, 0.08)' }}>
+    <Card sx={{ width: '100%', mb: 2, borderRadius: 2, ...style, boxShadow: '0 2px 16px 0 rgba(76, 0, 130, 0.08)' }}>
       <CardHeader
         title={<Typography sx={{ fontSize: 18, fontWeight: 700, color: '#4B0082' }}>{title}</Typography>}
         subheader={<Typography sx={{ fontSize: 14, color: 'text.secondary', fontWeight: 400 }}>{subheader}</Typography>}

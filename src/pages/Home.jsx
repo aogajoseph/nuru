@@ -22,7 +22,7 @@ const Home = () => {
           Hi, My name is Nuru.
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Ask me anything about Nairobi Chapel Ngong’ Road. I’ll keep you informed and connected.
+          Ask me anything about Nairobi Chapel Ngong’ Road.
         </Typography>
       </Box>
 

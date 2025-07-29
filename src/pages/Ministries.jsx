@@ -127,7 +127,7 @@ const Ministries = () => {
             ministryProps.image = safeFamiliesImg;
           }
           return (
-            <Box key={idx} sx={{ flex: '1 1 340px', maxWidth: 600, minWidth: 320 }}>
+            <Box key={idx} sx={{ flex: '1 1 260px', maxWidth: 600, minWidth: 260, display: 'flex' }}>
               <FrontlineMinistryCard
                 {...ministryProps}
                 idx={idx}
@@ -148,7 +148,7 @@ const Ministries = () => {
       ) : (
         <Box display="flex" flexWrap="wrap" gap={2}>
           {ministries.map((ministry, idx) => (
-            <Box key={idx} sx={{ flex: '1 1 320px', maxWidth: 345, minWidth: 260 }}>
+            <Box key={idx} sx={{ flex: '1 1 260px', maxWidth: 345, minWidth: 260, display: 'flex' }}>
               <MinistriesCard
                 {...ministry}
                 idx={idx}

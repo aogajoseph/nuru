@@ -37,7 +37,7 @@ const Connect = () => {
   return (
     <Box sx={{ mt: 7, mb: 6, width: '100%', px: { xs: 2, md: 4 }, display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 4 }}>
       {/* Left: Feedback Form and Socials */}
-      <Box sx={{ flex: 1, minWidth: 340, display: 'flex', flexDirection: 'column', gap: 3 }}>
+      <Box sx={{ flex: 1, minWidth: 260, display: 'flex', flexDirection: 'column', gap: 3 }}>
         <Paper elevation={2} sx={{ p: 3, borderRadius: 3, mb: 2, ...cardStyles[2], boxShadow: '0 2px 12px 0 rgba(90, 100, 120, 0.07)' }}>
           <Typography variant="h5" fontWeight={700} mb={2} color="#7F00FF">Feedback</Typography>
           <Typography variant="body2" color="text.secondary" mb={2}>
@@ -75,7 +75,7 @@ const Connect = () => {
         </Box>
       </Box>
       {/* Right: Giving Form and Addresses */}
-      <Box sx={{ flex: 1, minWidth: 340, display: 'flex', flexDirection: 'column', gap: 3 }}>
+      <Box sx={{ flex: 1, minWidth: 260, display: 'flex', flexDirection: 'column', gap: 3 }}>
         <Paper elevation={2} sx={{ p: 3, borderRadius: 3, mb: 2, ...cardStyles[0], boxShadow: '0 2px 12px 0 rgba(90, 100, 120, 0.07)' }}>
           <Typography variant="subtitle1" fontWeight={600} mb={2} sx={{ fontSize: 16, color: '#7F00FF' }}>Giving</Typography>
           <form>

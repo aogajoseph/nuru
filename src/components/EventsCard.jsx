@@ -26,7 +26,7 @@ const cardStyles = [
 export default function EventsCard({ title, subtitle, image, date, description, idx }) {
   const style = cardStyles[idx % cardStyles.length];
   return (
-    <Card sx={{ maxWidth: 500, minWidth: 340, flex: 1, mb: 2, borderRadius: 3, ...style, boxShadow: '0 2px 12px 0 rgba(90, 100, 120, 0.07)' }}>
+    <Card sx={{ width: '100%', mb: 2, borderRadius: 3, ...style, boxShadow: '0 2px 12px 0 rgba(90, 100, 120, 0.07)' }}>
       {image && (
         <CardMedia
           component="img"

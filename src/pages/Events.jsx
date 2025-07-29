@@ -69,7 +69,9 @@ const Events = () => (
     ) : (
       <Box display="flex" flexWrap="wrap" gap={3} mb={4}>
         {upcomingEvents.map((event, idx) => (
-          <EventsCard key={idx} {...event} idx={idx} />
+          <Box key={idx} sx={{ flex: '1 1 260px', maxWidth: 500, minWidth: 260, display: 'flex' }}>
+            <EventsCard {...event} idx={idx} />
+          </Box>
         ))}
       </Box>
     )}
@@ -83,7 +85,9 @@ const Events = () => (
     ) : (
       <Box display="flex" flexWrap="wrap" gap={3}>
         {pastEvents.map((event, idx) => (
-          <EventsCard key={idx} {...event} idx={idx + 10} />
+          <Box key={idx} sx={{ flex: '1 1 260px', maxWidth: 500, minWidth: 260, display: 'flex' }}>
+            <EventsCard {...event} idx={idx + 10} />
+          </Box>
         ))}
       </Box>
     )}
