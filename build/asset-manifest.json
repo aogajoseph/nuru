@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/static/js/main.f86bcf0c.js",
+    "main.js": "/static/js/main.fc4344fc.js",
     "static/js/453.670e15c7.chunk.js": "/static/js/453.670e15c7.chunk.js",
     "static/media/binti.png": "/static/media/binti.9816c076bb3ace21c4a8.png",
     "static/media/jabari.png": "/static/media/jabari.0abfb07e9e777ce08fee.png",
@@ -8,10 +8,10 @@
     "static/media/tumaini-clinics.png": "/static/media/tumaini-clinics.b28424ad1593a058e233.png",
     "static/media/logo.png": "/static/media/logo.d5cb5628682d039ebeff.png",
     "index.html": "/index.html",
-    "main.f86bcf0c.js.map": "/static/js/main.f86bcf0c.js.map",
+    "main.fc4344fc.js.map": "/static/js/main.fc4344fc.js.map",
     "453.670e15c7.chunk.js.map": "/static/js/453.670e15c7.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.f86bcf0c.js"
+    "static/js/main.fc4344fc.js"
   ]
 }

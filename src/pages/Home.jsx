@@ -19,7 +19,7 @@ const Home = () => {
       {/* Header */}
       <Box textAlign="center" mt={0} mb={1} px={2}>
         <Typography variant="h5" fontWeight="bold" gutterBottom>
-          Hi, My name is Nuru.
+          Hello, I'm Nuru.
         </Typography>
         <Typography variant="body2" color="text.secondary">
           Ask me anything about Nairobi Chapel Ngong’ Road.
