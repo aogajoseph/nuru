@@ -1,8 +1,5 @@
 {
   "projects": {
-    "default": "nuru",
-    "Nuru": "nuru-c62e4"
-  },
-  "targets": {},
-  "etags": {}
+    "default": "nuru-c62e4",
+  }
 }

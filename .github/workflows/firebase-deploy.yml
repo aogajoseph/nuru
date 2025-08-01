@@ -18,16 +18,13 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Clean install dependencies
+        run: npm ci
 
       - name: Build React app
         run: npm run build
 
-      - name: Install Firebase CLI
-        run: npm install -g firebase-tools
-
       - name: Deploy to Firebase Hosting
-        run: firebase deploy --only hosting --project nuru-c62e4 --token "$FIREBASE_TOKEN"
+        run: npx firebase-tools deploy --only hosting --project nuru-c62e4 --token "$FIREBASE_TOKEN"
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
