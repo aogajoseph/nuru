@@ -10,9 +10,33 @@ import {
   CircularProgress,
 } from "@mui/material";
 
+// Helper to format contact info in bot responses
+const formatBotMessage = (text) => {
+  let formatted = text;
+
+  // WhatsApp number
+  formatted = formatted.replace(
+    /0701\s?777\s?888/g,
+    `<a href="https://wa.me/254701777888" target="_blank" style="color:#25D366;text-decoration:none;">0701 777 888 (WhatsApp)</a>`
+  );
+
+  // Phone number
+  formatted = formatted.replace(
+    /\(?\+?254\)?\s?0725\s?650\s?737/g,
+    `<a href="tel:+254725650737" style="color:#7F00FF;text-decoration:none;">0725 650 737 (Call)</a>`
+  );
+
+  // Website
+  formatted = formatted.replace(
+    /https:\/\/nairobichapel\.net/g,
+    `<a href="https://nairobichapel.net" target="_blank" style="color:#7F00FF;text-decoration:none;">nairobichapel.net</a>`
+  );
+
+  return { __html: formatted };
+};
+
 const ChatBox = () => {
-  const [messages, setMessages] = useState([
-  ]);
+  const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const chatRef = useRef(null);
@@ -92,13 +116,22 @@ const ChatBox = () => {
                     msg.sender === "user" ? "#e3f2fd" : "#f5f5f5",
                 }}
               >
-                <Typography
-                  variant="body2"
-                  fontSize="0.95rem"
-                  color="text.primary"
-                >
-                  {msg.text}
-                </Typography>
+                {msg.sender === "bot" ? (
+                  <Typography
+                    variant="body2"
+                    fontSize="0.95rem"
+                    color="text.primary"
+                    dangerouslySetInnerHTML={formatBotMessage(msg.text)}
+                  />
+                ) : (
+                  <Typography
+                    variant="body2"
+                    fontSize="0.95rem"
+                    color="text.primary"
+                  >
+                    {msg.text}
+                  </Typography>
+                )}
               </Paper>
             </Box>
           ))}
