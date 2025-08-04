@@ -14,8 +14,11 @@ import { Link } from 'react-router-dom';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import { SvgIcon } from '@mui/material';
+import { ReactComponent as XIcon } from '../assets/x-icon.svg';
 import EmailIcon from '@mui/icons-material/Email';
+import { Typography, Stack } from '@mui/material';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 export default function PrimarySearchAppBar({ sidebarExpanded, onToggleSidebar }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -95,11 +98,36 @@ export default function PrimarySearchAppBar({ sidebarExpanded, onToggleSidebar }
       keepMounted
       open={isMenuOpen}
       onClose={handleMenuClose}
-      PaperProps={{ sx: { mt: 1, minWidth: 180 } }}
+      PaperProps={{ sx: { mt: 1, minWidth: 180, px: 2, py: 1.5 } }}
     >
+      {/* Title & Subtitle */}
+      <Stack spacing={0.3} sx={{ px: 1, pb: 0.5 }}>
+        <Typography variant="subtitle1" fontWeight="bold">
+          Nairobi Chapel
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Ngong' Road
+        </Typography>
+      </Stack>
+
       <MenuItem onClick={handleMenuClose}></MenuItem>
       <MenuItem onClick={handleMenuClose}></MenuItem>
-      <MenuItem>Admin Dashboard <br />(Coming Soon)</MenuItem>
+
+      {/* Settings Option with icon and label */}
+      <MenuItem
+        onClick={() => {
+          alert('This feature is coming soon');
+          handleMenuClose();
+        }}
+      >
+        <SettingsIcon sx={{ color: '#7F00FF', fontSize: 20, mr: 1 }} />
+        <Typography sx={{ color: '#7F00FF', fontWeight: 500, fontSize: 14 }}>
+          Settings
+        </Typography>
+        <Typography sx={{ color: '#888', fontSize: 12, ml: 1 }}>
+          (Admins Only)
+        </Typography>
+      </MenuItem>
     </Menu>
   );
 
@@ -167,7 +195,8 @@ export default function PrimarySearchAppBar({ sidebarExpanded, onToggleSidebar }
                 <FacebookIcon sx={{ mr: 1, color: '#4267B2' }} /> Facebook
               </MenuItem>
               <MenuItem onClick={() => handleShare('x')}>
-                <TwitterIcon sx={{ mr: 1, color: 'black' }} /> X
+                <SvgIcon component={XIcon} sx={{ mr: 1, fontSize: 20 }} />
+                X
               </MenuItem>
               <MenuItem onClick={() => handleShare('email')}>
                 <EmailIcon sx={{ mr: 1, color: '#EA4335' }} /> Email
