@@ -5,6 +5,13 @@ import SermonsCard from "../components/SermonsCard";
 
 const sermons = [
   {
+    title: "The Need for Evangelism",
+    videoUrl: "https://www.youtube.com/embed/JOqOi2vMp9Q?si=WRB0EOvhnHxgZME5",
+    description: "Reigniting our call to share the gospel in a world that desperately needs it.",
+    preacher: "Pastor Javellin Kiende",
+    date: "Aug 3, 2025",
+  },
+  {
     title: "The Commission",
     videoUrl: "https://www.youtube.com/embed/idCfP_ScsLc?si=EUAMYqfLOvZSPFvA",
     description: "If Jesus was to establish a government today, what would it look like? Think about that.",

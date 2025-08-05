@@ -16,12 +16,12 @@ const formatBotMessage = (text) => {
 
   formatted = formatted.replace(
     /0701\s?777\s?888/g,
-    `<a href="https://wa.me/254701777888" target="_blank" style="color:#25D366;text-decoration:none;">0701 777 888 (WhatsApp)</a>`
+    `<a href="https://wa.me/254701777888" target="_blank" style="color:#25D366;text-decoration:none;">0701 777 888</a>`
   );
 
   formatted = formatted.replace(
     /\(?\+?254\)?\s?0725\s?650\s?737/g,
-    `<a href="tel:+254725650737" style="color:#7F00FF;text-decoration:none;">0725 650 737 (Call)</a>`
+    `<a href="tel:+254725650737" style="color:#7F00FF;text-decoration:none;">0725 650 737</a>`
   );
 
   formatted = formatted.replace(
