@@ -60,26 +60,26 @@ const ChatBox = () => {
   const [config, setConfig] = useState(null);
   const chatRef = useRef(null);
 
-  // Fetch config and inject random greeting
+  // Load config and inject random intro message
   useEffect(() => {
     const fetchConfig = async () => {
       try {
         const res = await fetch("https://nuru-backend-os39.onrender.com/config");
         const data = await res.json();
 
-        setConfig(data);
+        setConfig(data); // 🔄 Keep config in state
 
-        const introOptions = data?.intro_messages || [];
-        const selected = introOptions[Math.floor(Math.random() * introOptions.length)];
+        const intros = data?.intro_messages || [];
+        const randomIntro = intros[Math.floor(Math.random() * intros.length)];
 
-        setMessages([{ sender: "bot", text: selected }]);
+        setMessages([{ sender: "bot", text: randomIntro }]);
       } catch (error) {
         console.error("Failed to load config:", error);
-        // fallback intro if config fails
         setMessages([
           {
             sender: "bot",
-            text: "Hi, I’m Nuru—your digital companion here at Nairobi Chapel Ngong Road. 😊 How can I help today?",
+            text:
+              "Hi, I’m Nuru—your digital companion here at Nairobi Chapel Ngong Road. 😊 How can I help today?",
           },
         ]);
       }
