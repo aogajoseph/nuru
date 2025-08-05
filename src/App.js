@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 
 // Pages
@@ -10,20 +10,59 @@ import Events from "./pages/Events";
 import Sermons from "./pages/Sermons";
 import Connect from "./pages/Connect";
 
+// Intro slides
+import IntroSlideOne from "./components/IntroSlideOne";
+import IntroSlideTwo from "./components/IntroSlideTwo";
+
 function App() {
+  const [showIntro, setShowIntro] = useState(() => {
+    return !localStorage.getItem("seenIntro");
+  });
+
+  const handleIntroDone = () => {
+    localStorage.setItem("seenIntro", "true");
+    setShowIntro(false);
+  };
+
   return (
     <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />                 {/* Home is 
-          default */}
-          <Route path="/notices" element={<Notices />} />
-          <Route path="/ministries" element={<Ministries />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/sermons" element={<Sermons />} />
-          <Route path="/connect" element={<Connect />} />
-        </Routes>
-      </Layout>
+      <Routes>
+        {/* Intro Slides */}
+        {showIntro ? (
+          <>
+            <Route
+              path="/"
+              element={
+                <IntroSlideOne
+                  onNext={() => window.location.href = "/intro-2"}
+                  onSkip={handleIntroDone}
+                />
+              }
+            />
+            <Route
+              path="/intro-2"
+              element={
+                <IntroSlideTwo
+                  onBack={() => window.location.href = "/"}
+                  onDone={handleIntroDone}
+                />
+              }
+            />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </>
+        ) : (
+          // Main App Routes
+          <>
+            <Route path="/" element={<Layout><Home /></Layout>} />
+            <Route path="/notices" element={<Layout><Notices /></Layout>} />
+            <Route path="/ministries" element={<Layout><Ministries /></Layout>} />
+            <Route path="/events" element={<Layout><Events /></Layout>} />
+            <Route path="/sermons" element={<Layout><Sermons /></Layout>} />
+            <Route path="/connect" element={<Layout><Connect /></Layout>} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </>
+        )}
+      </Routes>
     </Router>
   );
 }
