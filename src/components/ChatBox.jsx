@@ -10,23 +10,20 @@ import {
   CircularProgress,
 } from "@mui/material";
 
-// Helper to format contact info in bot responses
+// === Format links in assistant responses ===
 const formatBotMessage = (text) => {
   let formatted = text;
 
-  // WhatsApp number
   formatted = formatted.replace(
     /0701\s?777\s?888/g,
     `<a href="https://wa.me/254701777888" target="_blank" style="color:#25D366;text-decoration:none;">0701 777 888 (WhatsApp)</a>`
   );
 
-  // Phone number
   formatted = formatted.replace(
     /\(?\+?254\)?\s?0725\s?650\s?737/g,
     `<a href="tel:+254725650737" style="color:#7F00FF;text-decoration:none;">0725 650 737 (Call)</a>`
   );
 
-  // Website
   formatted = formatted.replace(
     /https:\/\/nairobichapel\.net/g,
     `<a href="https://nairobichapel.net" target="_blank" style="color:#7F00FF;text-decoration:none;">nairobichapel.net</a>`
@@ -35,11 +32,65 @@ const formatBotMessage = (text) => {
   return { __html: formatted };
 };
 
+// === Smart Greeting Response ===
+const getTimeGreeting = () => {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good morning";
+  if (hour < 17) return "Good afternoon";
+  return "Good evening";
+};
+
+const detectGreetingResponse = (userInput) => {
+  const normalized = userInput.toLowerCase();
+  if (
+    normalized.includes("good morning") ||
+    normalized.includes("good afternoon") ||
+    normalized.includes("good evening")
+  ) {
+    const correct = getTimeGreeting();
+    return `Hey! Thanks for the warm greeting. It’s actually ${correct.toLowerCase()} here, but I’m really glad you dropped by! 😊 How can I help today?`;
+  }
+  return null;
+};
+
 const ChatBox = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [config, setConfig] = useState(null);
   const chatRef = useRef(null);
+
+  // Fetch config and inject random greeting
+  useEffect(() => {
+    const fetchConfig = async () => {
+      try {
+        const res = await fetch("https://nuru-backend-os39.onrender.com/config");
+        const data = await res.json();
+
+        setConfig(data);
+
+        const introOptions = data?.intro_messages || [];
+        const selected = introOptions[Math.floor(Math.random() * introOptions.length)];
+
+        setMessages([{ sender: "bot", text: selected }]);
+      } catch (error) {
+        console.error("Failed to load config:", error);
+        // fallback intro if config fails
+        setMessages([
+          {
+            sender: "bot",
+            text: "Hi, I’m Nuru—your digital companion here at Nairobi Chapel Ngong Road. 😊 How can I help today?",
+          },
+        ]);
+      }
+    };
+
+    fetchConfig();
+  }, []);
+
+  useEffect(() => {
+    chatRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -48,6 +99,13 @@ const ChatBox = () => {
     setMessages((prev) => [...prev, { sender: "user", text: userMessage }]);
     setInput("");
     setLoading(true);
+
+    const smartGreeting = detectGreetingResponse(userMessage);
+    if (smartGreeting) {
+      setMessages((prev) => [...prev, { sender: "bot", text: smartGreeting }]);
+      setLoading(false);
+      return;
+    }
 
     try {
       const response = await fetch("https://nuru-backend-os39.onrender.com/ask", {
@@ -72,17 +130,13 @@ const ChatBox = () => {
     }
   };
 
-  useEffect(() => {
-    chatRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
-
   return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
         height: "65vh",
-        width: { xs: '100%', sm: '70vw', md: '50vw' },
+        width: { xs: "100%", sm: "70vw", md: "50vw" },
         background: "transparent",
         borderRadius: 3,
         px: 0,
@@ -91,14 +145,7 @@ const ChatBox = () => {
         flexShrink: 0,
       }}
     >
-      <Box
-        sx={{
-          flexGrow: 1,
-          overflowY: "auto",
-          py: 2,
-          px: 1,
-        }}
-      >
+      <Box sx={{ flexGrow: 1, overflowY: "auto", py: 2, px: 1 }}>
         <Stack spacing={2}>
           {messages.map((msg, idx) => (
             <Box
@@ -112,8 +159,7 @@ const ChatBox = () => {
                   px: 2,
                   py: 1,
                   borderRadius: 3,
-                  backgroundColor:
-                    msg.sender === "user" ? "#e3f2fd" : "#f5f5f5",
+                  backgroundColor: msg.sender === "user" ? "#e3f2fd" : "#f5f5f5",
                 }}
               >
                 {msg.sender === "bot" ? (
@@ -177,7 +223,6 @@ const ChatBox = () => {
             },
           }}
         />
-
         <IconButton
           onClick={handleSend}
           disabled={loading}
